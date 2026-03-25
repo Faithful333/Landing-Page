@@ -1,58 +1,38 @@
-const { google } = require('googleapis');
+const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { email, interest } = req.body;
 
-  // Basic email validation
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'A valid email address is required.' });
   }
 
   try {
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ANON_KEY
+    );
 
-    const sheets = google.sheets({ version: 'v4', auth });
+    const { error } = await supabase
+      .from('signups')
+      .insert([{ email, interest: interest || 'Email List' }]);
 
-    const timestamp = new Date().toLocaleString('en-GB', {
-      timeZone: 'UTC',
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:C',
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [[timestamp, email, interest || 'Email List']],
-      },
-    });
+    if (error) {
+      // Duplicate email — treat as success so we don't leak info
+      if (error.code === '23505') return res.status(200).json({ success: true });
+      throw error;
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Google Sheets error:', error);
+    console.error('Supabase error:', error);
     return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 };

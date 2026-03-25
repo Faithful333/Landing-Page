@@ -1,9 +1,8 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
-  ],
-  "routes": [
-    { "src": "/(.*)\\.html", "dest": "/$1.html" },
-    { "src": "/", "dest": "/index.html" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/privacy", "destination": "/privacy Faithful Ventures Page.html" },
+    { "source": "/terms", "destination": "/terms Faithful Ventures Page.html" },
+    { "source": "/", "destination": "/index.html" }
   ]
 }

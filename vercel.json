@@ -1,8 +1,8 @@
 {
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/privacy", "destination": "/privacy Faithful Ventures Page.html" },
-    { "source": "/terms", "destination": "/terms Faithful Ventures Page.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
     { "source": "/", "destination": "/index.html" }
   ]
 }

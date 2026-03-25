@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1062,24 +1063,23 @@
 
 <script>
 (function () {
-  // Track which interest the user came from (default = general email list)
-  let currentInterest = 'Email List';
+  // ── SUPABASE CONFIG ──────────────────────────────────────────────
+  var SUPABASE_URL  = 'https://wwnfpnuefistuxfblbmz.supabase.co';
+  var SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3bmZwbnVlZmlzdHV4ZmJsYm16Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NzI2MzIsImV4cCI6MjA5MDA0ODYzMn0.TiTN7BP6CtimLaSse_d7guAd2sJbZkAbV79Ymdj443M';
+  // ────────────────────────────────────────────────────────────────
+
+  var db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  var currentInterest = 'Email List';
 
   // "Register Interest" buttons set the interest type and scroll to form
   document.querySelectorAll('.program-cta[data-interest]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       currentInterest = this.dataset.interest;
-
-      // Update the eyebrow label above the form so it reflects the program
       var eyebrow = document.querySelector('.cta-eyebrow');
       if (eyebrow) eyebrow.textContent = 'Register Interest — ' + currentInterest;
-
-      // Scroll to the sign-up section
       var joinSection = document.getElementById('join');
       if (joinSection) joinSection.scrollIntoView({ behavior: 'smooth' });
-
-      // Focus the email field after scroll animation
       setTimeout(function () {
         var emailField = document.getElementById('signup-email');
         if (emailField) emailField.focus();
@@ -1087,53 +1087,41 @@
     });
   });
 
-  // Form submission via fetch → /api/subscribe
+  // Form submission directly to Supabase
   var btn = document.getElementById('signup-btn');
   if (btn) {
     btn.addEventListener('click', async function () {
       var emailInput = document.getElementById('signup-email');
       var email = emailInput ? emailInput.value.trim() : '';
 
-      // Client-side validation
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailInput.style.outline = '2px solid #e53e3e';
         emailInput.focus();
         return;
       }
       emailInput.style.outline = '';
-
-      // Loading state
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
       try {
-        var response = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, interest: currentInterest }),
-        });
+        var result = await db.from('signups').insert([{ email: email, interest: currentInterest }]);
 
-        var data = await response.json();
-
-        if (response.ok && data.success) {
-          // Replace form with a success message
-          var form = document.getElementById('signup-form');
-          var note = document.getElementById('signup-note');
-          if (form) {
-            form.innerHTML =
-              '<div style="display:flex;align-items:center;gap:0.6rem;padding:1rem 1.5rem;color:#05a393;font-size:0.92rem;font-weight:500;">' +
-              '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
-              "You're in. We'll be in touch soon." +
-              '</div>';
-          }
-          if (note) note.style.display = 'none';
-        } else {
-          // API returned an error
-          btn.textContent = 'Join Now';
-          btn.disabled = false;
-          var msg = (data && data.error) ? data.error : 'Something went wrong. Please try again.';
-          showFormError(emailInput, msg);
+        // Duplicate email (code 23505) — treat as success
+        if (result.error && result.error.code !== '23505') {
+          throw result.error;
         }
+
+        var form = document.getElementById('signup-form');
+        var note = document.getElementById('signup-note');
+        if (form) {
+          form.innerHTML =
+            '<div style="display:flex;align-items:center;gap:0.6rem;padding:1rem 1.5rem;color:#05a393;font-size:0.92rem;font-weight:500;">' +
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
+            "You're in. We'll be in touch soon." +
+            '</div>';
+        }
+        if (note) note.style.display = 'none';
+
       } catch (err) {
         btn.textContent = 'Join Now';
         btn.disabled = false;

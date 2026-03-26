@@ -680,10 +680,14 @@
     background: white;
   }
 
-  /* Name input sits on its own row, separated by a hairline border */
-  #signup-name {
+  /* First + Last name share the top row */
+  .cta-form-names {
+    display: flex;
     border-bottom: 1px solid rgba(71,115,165,0.15);
-    width: 100%;
+  }
+
+  #signup-firstname {
+    border-right: 1px solid rgba(71,115,165,0.15);
   }
 
   /* Email + button share the bottom row */
@@ -915,7 +919,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-rule"></div>
-  <p class="hero-eyebrow">A Global Faith-Driven Innovation Ecosystem</p>
+  <p class="hero-eyebrow">Faith-Driven Innovation Ecosystem</p>
   <h1 class="hero-title">
     <em>Go</em> Early.<br>
     <em>Equip</em> Founders.<br>
@@ -1039,7 +1043,10 @@
       If you are building, investing, or convening in the faith-driven innovation space — and you are serious about impact that lasts — we belong in your network.
     </p>
     <div class="cta-form" id="signup-form">
-      <input type="text" class="cta-input" id="signup-name" placeholder="Your full name" autocomplete="name">
+      <div class="cta-form-names">
+        <input type="text" class="cta-input" id="signup-firstname" placeholder="First name" autocomplete="given-name">
+        <input type="text" class="cta-input" id="signup-lastname" placeholder="Last name" autocomplete="family-name">
+      </div>
       <div class="cta-form-row">
         <input type="email" class="cta-input" id="signup-email" placeholder="Your email address" autocomplete="email">
         <button class="cta-submit" id="signup-btn">Join Now</button>
@@ -1063,6 +1070,7 @@
         <h4>Legal</h4>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Use</a>
+        <a href="/basis-of-faith">Basis of Faith</a>
       </div>
     </div>
   </div>
@@ -1106,18 +1114,28 @@
   var btn = document.getElementById('signup-btn');
   if (btn) {
     btn.addEventListener('click', async function () {
-      var nameInput  = document.getElementById('signup-name');
+      var firstInput = document.getElementById('signup-firstname');
+      var lastInput  = document.getElementById('signup-lastname');
       var emailInput = document.getElementById('signup-email');
-      var name  = nameInput  ? nameInput.value.trim()  : '';
-      var email = emailInput ? emailInput.value.trim() : '';
+      var firstName = firstInput ? firstInput.value.trim() : '';
+      var lastName  = lastInput  ? lastInput.value.trim()  : '';
+      var email     = emailInput ? emailInput.value.trim() : '';
 
-      // Validate name — must not be empty
-      if (!name) {
-        nameInput.style.outline = '2px solid #e53e3e';
-        nameInput.focus();
+      // Validate first name
+      if (!firstName) {
+        firstInput.style.outline = '2px solid #e53e3e';
+        firstInput.focus();
         return;
       }
-      nameInput.style.outline = '';
+      firstInput.style.outline = '';
+
+      // Validate last name
+      if (!lastName) {
+        lastInput.style.outline = '2px solid #e53e3e';
+        lastInput.focus();
+        return;
+      }
+      lastInput.style.outline = '';
 
       // Validate email format
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -1131,8 +1149,8 @@
       btn.disabled = true;
 
       try {
-        // Insert name, email, and which program they're interested in
-        var result = await db.from('signups').insert([{ name: name, email: email, interest: currentInterest }]);
+        // Insert first_name, last_name, email, and program interest
+        var result = await db.from('signups').insert([{ first_name: firstName, last_name: lastName, email: email, interest: currentInterest }]);
 
         // Duplicate email (code 23505) — treat as success
         if (result.error && result.error.code !== '23505') {

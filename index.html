@@ -670,6 +670,7 @@
 
   .cta-form {
     display: flex;
+    flex-direction: column;
     gap: 0;
     max-width: 420px;
     margin: 0 auto 1rem;
@@ -677,6 +678,17 @@
     border-radius: 2px;
     overflow: hidden;
     background: white;
+  }
+
+  /* Name input sits on its own row, separated by a hairline border */
+  #signup-name {
+    border-bottom: 1px solid rgba(71,115,165,0.15);
+    width: 100%;
+  }
+
+  /* Email + button share the bottom row */
+  .cta-form-row {
+    display: flex;
   }
 
   .cta-input {
@@ -1027,8 +1039,11 @@
       If you are building, investing, or convening in the faith-driven innovation space — and you are serious about impact that lasts — we belong in your network.
     </p>
     <div class="cta-form" id="signup-form">
-      <input type="email" class="cta-input" id="signup-email" placeholder="Your email address" autocomplete="email">
-      <button class="cta-submit" id="signup-btn">Join Now</button>
+      <input type="text" class="cta-input" id="signup-name" placeholder="Your full name" autocomplete="name">
+      <div class="cta-form-row">
+        <input type="email" class="cta-input" id="signup-email" placeholder="Your email address" autocomplete="email">
+        <button class="cta-submit" id="signup-btn">Join Now</button>
+      </div>
     </div>
     <p class="cta-note" id="signup-note">No spam, ever. Unsubscribe any time.</p>
   </div>
@@ -1091,20 +1106,33 @@
   var btn = document.getElementById('signup-btn');
   if (btn) {
     btn.addEventListener('click', async function () {
+      var nameInput  = document.getElementById('signup-name');
       var emailInput = document.getElementById('signup-email');
+      var name  = nameInput  ? nameInput.value.trim()  : '';
       var email = emailInput ? emailInput.value.trim() : '';
 
+      // Validate name — must not be empty
+      if (!name) {
+        nameInput.style.outline = '2px solid #e53e3e';
+        nameInput.focus();
+        return;
+      }
+      nameInput.style.outline = '';
+
+      // Validate email format
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailInput.style.outline = '2px solid #e53e3e';
         emailInput.focus();
         return;
       }
       emailInput.style.outline = '';
+
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
       try {
-        var result = await db.from('signups').insert([{ email: email, interest: currentInterest }]);
+        // Insert name, email, and which program they're interested in
+        var result = await db.from('signups').insert([{ name: name, email: email, interest: currentInterest }]);
 
         // Duplicate email (code 23505) — treat as success
         if (result.error && result.error.code !== '23505') {

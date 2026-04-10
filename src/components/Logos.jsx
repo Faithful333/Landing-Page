@@ -1,0 +1,28 @@
+const LOGOS = [
+  { src: '/apple.png',     name: 'Apple'     },
+  { src: '/google.png',    name: 'Google'    },
+  { src: '/meta.png',      name: 'Meta'      },
+  { src: '/microsoft.png', name: 'Microsoft' },
+  { src: '/oracle.png',    name: 'Oracle'    },
+  { src: '/sequoia.png',   name: 'Sequoia'   },
+  { src: '/tesla.png',     name: 'Tesla'     },
+]
+
+const TRACK = [...LOGOS, ...LOGOS]
+
+export default function Logos() {
+  return (
+    <section className="logos">
+      <p className="logos-label">Companies our mentors have experience at:</p>
+      <div className="logos-viewport">
+        <div className="logos-track">
+          {TRACK.map((logo, i) => (
+            <div key={i} className="logo-slot">
+              <img src={logo.src} alt={logo.name} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,8 +1,7 @@
 {
   "rewrites": [
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/basis-of-faith", "destination": "/basis-of-faith.html" },
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/privacy",       "destination": "/privacy.html" },
+    { "source": "/terms",         "destination": "/terms.html" },
+    { "source": "/basis-of-faith","destination": "/basis-of-faith.html" }
   ]
 }

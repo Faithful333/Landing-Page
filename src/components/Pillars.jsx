@@ -23,14 +23,6 @@ const PILLARS = [
     image: '/mentors.jpeg',
     imageAlt: 'Mentors in discussion',
   },
-  {
-    number: '04',
-    tag: 'Mentor',
-    title: 'We Provide World-Class Mentorship',
-    body: 'We provide mentorship from a world-class network of successful founders and industry leaders.',
-    image: '/mentors.jpeg',
-    imageAlt: 'World-class mentors and founders',
-  },
 ]
 
 export default function Pillars() {
@@ -38,7 +30,7 @@ export default function Pillars() {
     <section className="pillars" id="pillars">
       <div className="section-header reveal">
         <p className="section-eyebrow">How We Work</p>
-        <h2 className="section-title">Four Pillars.<br />One Mission.</h2>
+        <h2 className="section-title">Three Pillars.<br />One Mission.</h2>
       </div>
       <div className="pillars-grid">
         {PILLARS.map((p, i) => (

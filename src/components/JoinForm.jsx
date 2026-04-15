@@ -5,7 +5,7 @@ import { getDb } from '@/lib/supabase'
 
 const REASONS = [
   'Connect with faith-driven founders and builders',
-  'Access our curated ecosystem of mentors and investors',
+  'Access our curated ecosystem of top industry leaders',
   'Get early invites to pitch events and cohort programs',
 ]
 
@@ -73,7 +73,7 @@ export default function JoinForm() {
             We exist to increase<br />everyone&apos;s <em>impact.</em>
           </h2>
           <p className="cta-body">
-            If you are building, investing, or convening in the faith-driven innovation space — and you are serious about impact that lasts — we belong in your network.
+            If you are building, investing, or convening in the faith-driven innovation space — and you are serious about missional impact that lasts — we belong in your network.
           </p>
           <ul className="cta-reasons">
             {REASONS.map(r => (

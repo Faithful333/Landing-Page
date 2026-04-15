@@ -658,7 +658,7 @@ nav.scrolled {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 4.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .program-card {

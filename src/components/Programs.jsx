@@ -18,7 +18,7 @@ const PROGRAMS = [
     type: 'secondary',
     subtitle: 'Venture Builder Cohort',
     title: '8-Week Venture Builder Cohort',
-    body: 'An intensive, cohort-based program designed to turn your vision into execution. We provide mentorship from a world-class network of successful founders and industry leaders, and help you find customers.',
+    body: 'An intensive, cohort-based program designed to turn your vision into execution. We provide mentorship from a world-class network of successful founders and industry leaders.',
     benefits: [
       'Mentorship from experienced faith-driven entrepreneurs',
       'Connections with aligned talent and partners',

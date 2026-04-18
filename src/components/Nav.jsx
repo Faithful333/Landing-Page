@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function LogoMark() {
   return (
@@ -20,6 +20,7 @@ function LogoMark() {
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -28,35 +29,62 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close on outside click
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (!menuOpen) return
+    const handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
   }, [menuOpen])
+
+  // Close on Escape
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [])
 
   const close = () => setMenuOpen(false)
 
   return (
-    <>
-      <nav className={scrolled ? 'scrolled' : ''}>
-        <a href="#" className="nav-logo">
-          <div className="nav-logo-mark"><LogoMark /></div>
-          Faithful Ventures
-        </a>
-        <a href="#join" className="nav-cta">Join the Ecosystem</a>
+    <nav className={scrolled ? 'scrolled' : ''}>
+      <a href="/" className="nav-logo">
+        <div className="nav-logo-mark"><LogoMark /></div>
+        Faithful Ventures
+      </a>
+
+      <div className="nav-menu-wrap" ref={menuRef}>
         <button
-          className={`nav-hamburger${menuOpen ? ' open' : ''}`}
+          className={`nav-menu-btn${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(v => !v)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
-          <span /><span /><span />
+          <span className="nav-menu-label">Menu</span>
+          <span className="nav-menu-icon">
+            <span /><span />
+          </span>
         </button>
-      </nav>
 
-      <div className={`nav-overlay${menuOpen ? ' open' : ''}`}>
-        <a href="#pillars" onClick={close}>How We Work</a>
-        <a href="#programs" onClick={close}>Get Involved</a>
-        <a href="#join" onClick={close}>Join the Ecosystem</a>
+        <div className={`nav-dropdown${menuOpen ? ' open' : ''}`} aria-hidden={!menuOpen}>
+          <a href="#join" className="nav-dropdown-item" onClick={close}>
+            <span className="nav-dropdown-num">01</span>
+            Join the Ecosystem
+          </a>
+          <a href="/mentors" className="nav-dropdown-item" onClick={close}>
+            <span className="nav-dropdown-num">02</span>
+            For Mentors
+          </a>
+          <a href="/basis-of-faith" className="nav-dropdown-item" onClick={close}>
+            <span className="nav-dropdown-num">03</span>
+            Basis of Faith
+          </a>
+        </div>
       </div>
-    </>
+    </nav>
   )
 }

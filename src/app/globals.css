@@ -88,81 +88,116 @@ nav.scrolled {
   display: flex; align-items: center; justify-content: center;
 }
 
-.nav-cta {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--dark);
-  padding: 0.7rem 1.75rem;
-  border-radius: 3px;
-  text-decoration: none;
-  transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+/* ── NAV MENU BUTTON ── */
+.nav-menu-wrap {
   position: relative;
   z-index: 101;
 }
 
-.nav-cta:hover {
-  background: var(--blue);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(71,115,165,0.35);
-}
-
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
+.nav-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   background: none;
-  border: none;
-  padding: 6px;
-  position: relative;
-  z-index: 101;
+  border: 1px solid rgba(14,32,53,0.2);
+  border-radius: 3px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.nav-hamburger span {
-  display: block;
-  width: 22px; height: 2px;
-  background: var(--dark);
-  border-radius: 2px;
-  transition: transform 0.3s var(--ease-out), opacity 0.3s ease;
+.nav-menu-btn:hover {
+  border-color: var(--dark);
+  background: rgba(14,32,53,0.04);
 }
 
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-menu-btn.open {
+  border-color: var(--dark);
+  background: rgba(14,32,53,0.06);
+}
 
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(14,32,53,0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 99;
+.nav-menu-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.nav-menu-icon {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  gap: 4px;
+}
+
+.nav-menu-icon span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--dark);
+  border-radius: 1px;
+  transition: transform 0.25s ease, width 0.25s ease;
+  transform-origin: center;
+}
+
+.nav-menu-btn.open .nav-menu-icon span:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+
+.nav-menu-btn.open .nav-menu-icon span:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+/* ── NAV DROPDOWN ── */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  min-width: 230px;
+  background: var(--dark);
+  border-radius: 4px;
+  overflow: hidden;
   opacity: 0;
+  transform: translateY(-6px) scale(0.97);
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transform-origin: top right;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.nav-overlay.open { opacity: 1; pointer-events: all; }
+.nav-dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
 
-.nav-overlay a {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.6rem;
-  font-weight: 300;
-  color: rgba(255,255,255,0.85);
+.nav-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 1.2rem;
+  color: rgba(255,255,255,0.7);
   text-decoration: none;
-  letter-spacing: -0.01em;
-  transition: color 0.2s;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: color 0.16s, background 0.16s;
 }
 
-.nav-overlay a:hover { color: var(--white); }
+.nav-dropdown-item:last-child { border-bottom: none; }
+
+.nav-dropdown-item:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-dropdown-num {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  min-width: 18px;
+}
 
 /* ─────────────────────────────────────────
    HERO
@@ -1289,9 +1324,6 @@ footer { background: var(--dark-2); }
 @media (max-width: 900px) {
   nav            { padding: 1.2rem 1.5rem; }
   nav.scrolled   { padding: 0.9rem 1.5rem; }
-  .nav-cta       { display: none; }
-  .nav-hamburger { display: flex; }
-
   .hero          { padding: 7rem 1.5rem 5rem; }
   .orb-1         { width: 450px; height: 450px; }
   .orb-2         { width: 320px; height: 320px; }

@@ -19,7 +19,7 @@ const PILLARS = [
     number: '03',
     tag: 'Unite',
     title: 'We Connect and Strengthen the Ecosystem',
-    body: "Most faith-driven founders are building alone — great idea, strong faith, no one around them who gets it. We change that. As a connective layer, we bring early-stage founders together with aligned co-founders, top mentors, and established institutions — so that no one who is serious about building has to start from scratch.",
+    body: "We exist to increase everyone's impact. As a connective layer, we bring early-stage faith-driven founders together with top accelerators, world-class mentors, and established institutions — so that every partnership strengthens what already exists.",
     image: '/mentors.jpeg',
     imageAlt: 'Mentors in discussion',
   },

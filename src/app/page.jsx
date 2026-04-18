@@ -16,8 +16,8 @@ export default function Home() {
       <Nav />
       <Hero />
       <Manifesto />
-      <ImpactWays />
       <Pillars />
+      <ImpactWays />
       <Logos />
       <Programs />
       <JoinForm />

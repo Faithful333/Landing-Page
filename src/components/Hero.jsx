@@ -20,10 +20,10 @@ export default function Hero() {
             Join the Ecosystem <span className="btn-arrow">→</span>
           </a>
         </div>
-      </div>
-      <div className="hero-scroll">
-        <span className="scroll-text">Scroll</span>
-        <div className="scroll-line" />
+        <div className="hero-scroll">
+          <span className="scroll-text">Scroll</span>
+          <div className="scroll-line" />
+        </div>
       </div>
     </section>
   )

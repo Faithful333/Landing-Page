@@ -325,14 +325,12 @@ nav.scrolled {
 .btn-primary:hover .btn-arrow { transform: translateX(5px); }
 
 .hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
+  margin-top: 3rem;
   opacity: 0;
   animation: fadeIn 1s ease 1.8s forwards;
   z-index: 2;
@@ -1327,24 +1325,13 @@ footer { background: var(--dark-2); }
 
 /* ── IMPACT WAYS ── */
 .impact-ways {
-  padding: 9rem 4rem;
-  background: var(--white);
-  border-top: 1px solid rgba(71,115,165,0.07);
+  padding: 7rem 4rem 6rem;
+  background: var(--light);
 }
 
 .impact-ways-inner {
-  max-width: 1200px;
+  max-width: 760px;
   margin: 0 auto;
-}
-
-.impact-ways-attribution {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(18,42,67,0.35);
-  margin-top: 0.6rem;
-  margin-bottom: 1.4rem;
-  font-weight: 400;
 }
 
 .impact-ways-intro {
@@ -1352,8 +1339,77 @@ footer { background: var(--dark-2); }
   line-height: 1.75;
   color: rgba(18,42,67,0.55);
   font-weight: 300;
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 1.2rem auto 0;
+}
+
+.impact-ways-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4rem;
+}
+
+.impact-way-item {
+  display: flex;
+  gap: 2.5rem;
+  padding: 2.8rem 0;
+  border-top: 1px solid rgba(71,115,165,0.1);
+}
+
+.impact-way-item:last-child {
+  border-bottom: 1px solid rgba(71,115,165,0.1);
+}
+
+.impact-way-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(18,42,67,0.25);
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+  letter-spacing: 0.08em;
+}
+
+.impact-way-content {
+  flex: 1;
+}
+
+.impact-way-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.impact-way-rule {
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.impact-way-item:nth-child(1) .impact-way-rule { background: var(--blue); }
+.impact-way-item:nth-child(2) .impact-way-rule { background: var(--teal); }
+.impact-way-item:nth-child(3) .impact-way-rule { background: var(--gold); }
+
+.impact-way-body {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: rgba(18,42,67,0.58);
+  font-weight: 300;
+}
+
+.impact-ways-attribution {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(18,42,67,0.28);
+  font-weight: 400;
+  margin-top: 2.5rem;
+  text-align: center;
 }
 
 /* ── LOGOS MENTOR HEADING ── */
@@ -1382,6 +1438,7 @@ footer { background: var(--dark-2); }
 }
 
 @media (max-width: 900px) {
-  .impact-ways { padding: 5rem 1.5rem; }
+  .impact-ways { padding: 5rem 1.5rem 4rem; }
+  .impact-way-item { gap: 1.5rem; }
   .logos-heading-block { padding: 3rem 1.5rem 0; }
 }

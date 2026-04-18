@@ -13,7 +13,7 @@ export default function Hero() {
           We <span className="gold">Multiply</span> What Exists.
         </h1>
         <p className="hero-subtitle">
-          We equip faith-driven founders early, connect them deeply, and help them build ventures that shape tomorrow&apos;s culture.
+          Finding the right people, the right structure, and the right moment to start is hard. We exist to remove those barriers — for founders who are serious about both their calling and their craft.
         </p>
         <div className="hero-actions">
           <a href="#join" className="btn-primary">

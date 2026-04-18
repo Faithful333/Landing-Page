@@ -1324,3 +1324,64 @@ footer { background: var(--dark-2); }
   .cta-input-row { grid-template-columns: 1fr; }
   .cta-form-card { padding: 1.8rem; }
 }
+
+/* ── IMPACT WAYS ── */
+.impact-ways {
+  padding: 9rem 4rem;
+  background: var(--white);
+  border-top: 1px solid rgba(71,115,165,0.07);
+}
+
+.impact-ways-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-ways-attribution {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(18,42,67,0.35);
+  margin-top: 0.6rem;
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+
+.impact-ways-intro {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(18,42,67,0.55);
+  font-weight: 300;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── LOGOS MENTOR HEADING ── */
+.logos-heading-block {
+  text-align: center;
+  padding: 5rem 4rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.logos-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.logos-body {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: rgba(18,42,67,0.52);
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+  .impact-ways { padding: 5rem 1.5rem; }
+  .logos-heading-block { padding: 3rem 1.5rem 0; }
+}

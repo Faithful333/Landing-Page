@@ -73,7 +73,7 @@ export default function JoinForm() {
             We exist to increase<br />everyone&apos;s <em>impact.</em>
           </h2>
           <p className="cta-body">
-            If you are building, investing, or convening in the faith-driven innovation space — and you are serious about missional impact that lasts — we belong in your network.
+            If you&apos;re serious about building — but haven&apos;t found a community that takes both your faith and your ambition seriously — you&apos;re in the right place.
           </p>
           <ul className="cta-reasons">
             {REASONS.map(r => (

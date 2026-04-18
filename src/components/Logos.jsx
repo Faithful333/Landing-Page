@@ -13,6 +13,10 @@ const TRACK = [...LOGOS, ...LOGOS]
 export default function Logos() {
   return (
     <section className="logos">
+      <div className="logos-heading-block reveal">
+        <h2 className="logos-heading">Mentors who&apos;ve built,<br />raised, and exited.</h2>
+        <p className="logos-body">Our mentor network includes founders who have raised institutional capital, scaled to multi-market operations, and navigated successful exits — alongside senior leaders from world-class organisations. Every mentor brings direct, hard-won experience to your venture.</p>
+      </div>
       <p className="logos-label">Companies our mentors have experience at:</p>
       <div className="logos-viewport">
         <div className="logos-track">

@@ -26,7 +26,7 @@ export default function ImpactWays() {
         <div className="section-header reveal">
           <p className="section-eyebrow">Our Focus</p>
           <h2 className="section-title">What do we mean<br />by impact?</h2>
-          <p className="impact-ways-intro">Not every founder is called the same way. We believe entrepreneurship serves the Gospel through three distinct but complementary paths, and we encourage our founders in all three.</p>
+          <p className="impact-ways-intro">While not every founder is called the same way, we believe entrepreneurship serves the Gospel through three distinct but complementary paths, and we encourage our founders in all three.</p>
         </div>
         <div className="impact-ways-list">
           {WAYS.map((w, i) => (

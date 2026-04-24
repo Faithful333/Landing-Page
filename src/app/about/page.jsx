@@ -41,7 +41,6 @@ const COMPANIES = [
 
 // Hannah Barker replaced by Luke Whiting
 const TEAM = [
-  { name: 'Luke Whiting',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/luke-whiting/' },
   { name: 'Olly Perkins',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/oliver-t-perkins/' },
   { name: 'Ash Abraham',    role: 'Program Manager',   linkedin: 'https://www.linkedin.com/in/ash-abraham/' },
   { name: 'Jacob Böhm',     role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/jacobbohm1/' },

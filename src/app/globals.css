@@ -2284,14 +2284,14 @@ footer { background: var(--dark-2); }
 }
 .au-company-logo-link img { height: 32px; width: auto; object-fit: contain; max-width: 120px; }
 
-/* ── TEAM GRID — 3 top + 2 centred ── */
+/* ── TEAM GRID — 2 x 2 ── */
 .au-team-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
 }
 .au-team-card {
-  grid-column: span 2;
+  grid-column: span 1;
   display: flex;
   flex-direction: column;
   padding: 2rem 1.8rem 1.8rem;
@@ -2322,8 +2322,6 @@ footer { background: var(--dark-2); }
   background: rgba(71,115,165,0.02);
   box-shadow: 0 16px 40px rgba(71,115,165,0.12);
 }
-.au-team-card:nth-child(4) { grid-column: 2 / span 2; }
-.au-team-card:nth-child(5) { grid-column: 4 / span 2; }
 
 .au-team-top {
   display: flex;
@@ -2399,9 +2397,7 @@ footer { background: var(--dark-2); }
   .au-company-logo-link img { height: 24px; }
 
   .au-team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
-  .au-team-card,
-  .au-team-card:nth-child(4),
-  .au-team-card:nth-child(5) { grid-column: span 1; min-height: auto; }
+  .au-team-card { grid-column: span 1; min-height: auto; }
 }
 @media (max-width: 480px) {
   .au-mentors-grid { grid-template-columns: 1fr; }

@@ -2037,8 +2037,7 @@ footer { background: var(--dark-2); }
 .au-section--white { background: var(--white); }
 .au-section--dark  { background: var(--dark); }
 .au-inner { max-width: 1100px; margin: 0 auto; }
-
-.au-section-hd       { margin-bottom: 3.5rem; max-width: 600px; }
+.au-section-hd { margin-bottom: 3.5rem; max-width: 600px; }
 
 .au-section-eyebrow {
   font-size: 0.72rem;
@@ -2066,82 +2065,111 @@ footer { background: var(--dark-2); }
   color: rgba(14,32,53,0.52);
   font-weight: 300;
 }
+.au-section-sub--light { color: rgba(255,255,255,0.45); }
 
-/* Shared avatar */
-.au-avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.au-avatar--blue { background: rgba(71,115,165,0.12); }
-.au-avatar-letters {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--dark);
-}
-
-/* ── MENTORS GRID ── */
+/* ── MENTOR CARDS — gold exclusive ── */
 .au-mentors-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.85rem;
+  gap: 1rem;
   margin-bottom: 4rem;
 }
+
 .au-mentor-card {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 1rem 1.15rem;
-  background: var(--white);
-  border: 1px solid rgba(71,115,165,0.09);
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(180,156,114,0.18);
   border-radius: 8px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
 }
 .au-mentor-card:hover {
-  border-color: rgba(71,115,165,0.22);
-  box-shadow: 0 4px 16px rgba(14,32,53,0.07);
-}
-.au-mentor-name {
-  font-size: 0.86rem;
-  font-weight: 400;
-  color: var(--dark);
-  line-height: 1.3;
+  border-color: rgba(180,156,114,0.5);
+  background: rgba(180,156,114,0.06);
+  transform: translateY(-2px);
 }
 
-/* ── LOGOS STRIP ── */
+/* Gold shimmer top edge on hover */
+.au-mentor-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.au-mentor-card:hover::before { opacity: 1; }
+
+.au-mentor-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(180,156,114,0.12);
+  border: 1px solid rgba(180,156,114,0.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.au-avatar-letters {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.au-mentor-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* Tiny gold dot accent bottom-right */
+.au-mentor-accent {
+  position: absolute;
+  bottom: 10px; right: 12px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.25;
+  transition: opacity 0.25s;
+}
+.au-mentor-card:hover .au-mentor-accent { opacity: 0.7; }
+
+/* ── LOGOS STRIP (mentor section) ── */
 .au-logos-strip {
-  border-top: 1px solid rgba(71,115,165,0.1);
+  border-top: 1px solid rgba(180,156,114,0.15);
   padding-top: 3rem;
 }
 .au-logos-label {
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(14,32,53,0.36);
+  color: rgba(255,255,255,0.28);
   font-weight: 500;
   margin-bottom: 2rem;
 }
 .au-logos-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
+  gap: 3rem;
 }
 .au-logo-slot {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-width: 80px;
-  opacity: 0.38;
-  filter: grayscale(1);
+  opacity: 0.35;
+  filter: grayscale(1) brightness(3);
   transition: opacity 0.25s, filter 0.25s;
 }
-.au-logo-slot:hover { opacity: 0.72; filter: grayscale(0.3); }
-.au-logo-slot img { height: 26px; width: auto; object-fit: contain; }
+.au-logo-slot:hover { opacity: 0.75; filter: grayscale(0) brightness(1); }
+.au-logo-slot img { height: 28px; width: auto; object-fit: contain; }
 
 /* ── FOUNDERS GRID — 3 top + 2 centred ── */
 .au-founders-grid {
@@ -2150,8 +2178,6 @@ footer { background: var(--dark-2); }
   gap: 1.25rem;
   margin-bottom: 4rem;
 }
-
-/* Items 1-3: each spans 2 of 6 cols */
 .au-founder-card {
   grid-column: span 2;
   display: flex;
@@ -2163,7 +2189,7 @@ footer { background: var(--dark-2); }
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
   min-height: 200px;
 }
 .au-founder-card:hover {
@@ -2171,28 +2197,20 @@ footer { background: var(--dark-2); }
   box-shadow: 0 20px 48px rgba(14,32,53,0.35);
   border-color: rgba(5,163,147,0.3);
 }
-
-/* 4th item: start at col 2 → spans 2 (centred in 6-col) */
 .au-founder-card:nth-child(4) { grid-column: 2 / span 2; }
-/* 5th item: start at col 4 → spans 2 */
 .au-founder-card:nth-child(5) { grid-column: 4 / span 2; }
 
-/* Card number */
 .au-card-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 3rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.06);
   line-height: 1;
   position: absolute;
-  top: 1.4rem;
-  right: 1.6rem;
+  top: 1.4rem; right: 1.6rem;
   letter-spacing: -0.02em;
 }
-
-/* Card body (name + venture) */
 .au-founder-body { flex: 1; padding-top: 0.5rem; }
-
 .au-founder-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.45rem;
@@ -2207,28 +2225,20 @@ footer { background: var(--dark-2); }
   line-height: 1.5;
   font-weight: 300;
 }
-
-/* Card footer link */
-.au-card-footer {
-  margin-top: 1.8rem;
-  display: flex;
-  align-items: center;
-}
+.au-card-footer { margin-top: 1.8rem; }
 .au-card-link {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 500;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   transition: gap 0.2s;
 }
 .au-founder-card:hover .au-card-link { gap: 0.65rem; }
 .au-card-arrow { font-size: 0.85rem; }
-
-/* Teal accent bar at bottom */
 .au-card-accent {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -2240,7 +2250,7 @@ footer { background: var(--dark-2); }
 }
 .au-founder-card:hover .au-card-accent { transform: scaleX(1); }
 
-/* Companies strip */
+/* ── COMPANY LOGOS (cohort) ── */
 .au-companies { padding-top: 3rem; border-top: 1px solid rgba(71,115,165,0.08); }
 .au-companies-label {
   font-size: 0.7rem;
@@ -2248,25 +2258,31 @@ footer { background: var(--dark-2); }
   text-transform: uppercase;
   color: rgba(14,32,53,0.36);
   font-weight: 500;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.75rem;
 }
-.au-companies-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.au-company-tag {
-  display: inline-block;
-  padding: 0.42rem 1rem;
-  border: 1px solid rgba(71,115,165,0.13);
-  border-radius: 100px;
-  font-size: 0.78rem;
-  color: rgba(14,32,53,0.6);
-  text-decoration: none;
-  font-weight: 400;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
+.au-companies-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
-.au-company-tag:hover {
-  border-color: var(--blue);
-  color: var(--blue);
-  background: rgba(71,115,165,0.05);
+.au-company-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 80px;
+  opacity: 0.4;
+  filter: grayscale(1);
+  transition: opacity 0.25s, filter 0.25s, transform 0.25s;
 }
+.au-company-logo-link:hover {
+  opacity: 0.9;
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+.au-company-logo-link img { height: 32px; width: auto; object-fit: contain; max-width: 120px; }
 
 /* ── TEAM GRID — 3 top + 2 centred ── */
 .au-team-grid {
@@ -2274,33 +2290,28 @@ footer { background: var(--dark-2); }
   grid-template-columns: repeat(6, 1fr);
   gap: 1.25rem;
 }
-
 .au-team-card {
   grid-column: span 2;
   display: flex;
   flex-direction: column;
   padding: 2rem 1.8rem 1.8rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--white);
+  border: 1px solid rgba(71,115,165,0.1);
   border-radius: 12px;
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), border-color 0.3s, background 0.3s;
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
   min-height: 200px;
 }
 .au-team-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(180,156,114,0.3);
-  background: rgba(255,255,255,0.06);
+  border-color: rgba(180,156,114,0.4);
+  box-shadow: 0 16px 40px rgba(14,32,53,0.1);
 }
-
-/* 4th item centred */
 .au-team-card:nth-child(4) { grid-column: 2 / span 2; }
-/* 5th item centred */
 .au-team-card:nth-child(5) { grid-column: 4 / span 2; }
 
-/* Role tag top-left, arrow top-right */
 .au-team-top {
   display: flex;
   align-items: center;
@@ -2314,36 +2325,34 @@ footer { background: var(--dark-2); }
   color: var(--gold);
   font-weight: 500;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(180,156,114,0.25);
+  border: 1px solid rgba(180,156,114,0.3);
   border-radius: 100px;
 }
 .au-team-arrow {
   font-size: 1rem;
-  color: rgba(255,255,255,0.2);
+  color: rgba(14,32,53,0.2);
   transition: color 0.2s, transform 0.2s;
 }
 .au-team-card:hover .au-team-arrow { color: var(--gold); transform: translate(2px, -2px); }
 
-/* Large initials in centre */
 .au-team-avatar {
-  width: 64px; height: 64px;
+  width: 60px; height: 60px;
   border-radius: 50%;
-  background: rgba(180,156,114,0.1);
-  border: 1px solid rgba(180,156,114,0.18);
+  background: rgba(180,156,114,0.08);
+  border: 1px solid rgba(180,156,114,0.22);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.25rem;
 }
 .au-team-avatar .au-avatar-letters {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.75);
+  color: var(--gold);
 }
-
 .au-team-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.45rem;
   font-weight: 400;
-  color: rgba(255,255,255,0.88);
+  color: var(--dark);
   line-height: 1.2;
   margin-bottom: 0.75rem;
 }
@@ -2358,22 +2367,22 @@ footer { background: var(--dark-2); }
   .au-hero          { padding: 8rem 1.5rem 5rem; }
   .au-section       { padding: 5rem 1.5rem; }
   .au-mentors-grid  { grid-template-columns: repeat(2, 1fr); }
-  .au-logos-row     { gap: 1.2rem; }
-  .au-logo-slot img { height: 20px; }
+  .au-logos-row     { gap: 2rem; flex-wrap: wrap; }
+  .au-logo-slot img { height: 22px; }
 
-  /* Stack founders 1-col */
   .au-founders-grid { grid-template-columns: 1fr; gap: 0.85rem; }
   .au-founder-card,
   .au-founder-card:nth-child(4),
   .au-founder-card:nth-child(5) { grid-column: span 1; min-height: auto; }
 
-  /* Stack team 1-col */
+  .au-companies-logos { gap: 1.5rem; }
+  .au-company-logo-link img { height: 24px; }
+
   .au-team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
   .au-team-card,
   .au-team-card:nth-child(4),
   .au-team-card:nth-child(5) { grid-column: span 1; min-height: auto; }
 }
-
 @media (max-width: 480px) {
   .au-mentors-grid { grid-template-columns: 1fr; }
 }

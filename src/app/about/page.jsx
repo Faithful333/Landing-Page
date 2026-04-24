@@ -21,34 +21,33 @@ const MENTORS = [
   'Andrew Stimson',
 ]
 
-const LOGOS = [
-  { src: '/apple.png',     name: 'Apple'     },
-  { src: '/google.png',    name: 'Google'    },
-  { src: '/meta.png',      name: 'Meta'      },
-  { src: '/microsoft.png', name: 'Microsoft' },
-  { src: '/oracle.png',    name: 'Oracle'    },
-  { src: '/sequoia.png',   name: 'Sequoia'   },
-  { src: '/tesla.png',     name: 'Tesla'     },
+// Only Apple, Google, Meta kept — Microsoft, Oracle, Sequoia, Tesla removed
+const MENTOR_LOGOS = [
+  { src: '/apple.png',  name: 'Apple'  },
+  { src: '/google.png', name: 'Google' },
+  { src: '/meta.png',   name: 'Meta'   },
 ]
 
 const FOUNDERS = [
-  { name: 'Antonio Vinter',      venture: 'OnStage',                                       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
-  { name: 'Oleksandr Prosianyk', venture: 'Aimaly',                                        linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
-  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',          linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
-  { name: 'Jai Deshpande',       venture: 'CRM Dashboards for 8-figure B2B companies',     linkedin: 'https://www.linkedin.com/in/jai-deshpande-839112235/' },
-  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',  linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
+  { name: 'Antonio Vinter',      venture: 'OnStage — Service Planning for your Church',       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
+  { name: 'Oleksandr Prosianyk', venture: 'Aimaly — AI Client Acquisition Systems',            linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
+  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',             linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
+  { name: 'Jai Deshpande',       venture: 'CRM Dashboards for 8-figure B2B companies',        linkedin: 'https://www.linkedin.com/in/jai-deshpande-839112235/' },
+  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',     linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
 ]
 
+// Logo images instead of text tags
 const COMPANIES = [
-  { name: 'Apple',                    url: 'https://www.linkedin.com/company/apple/' },
-  { name: 'Amazon',                   url: 'https://www.linkedin.com/company/amazon/' },
-  { name: 'University of St. Gallen', url: 'https://www.unisg.ch/en/' },
-  { name: 'ServiceRocket',            url: 'https://www.linkedin.com/company/servicerocket/' },
-  { name: 'Fortech',                  url: 'https://www.linkedin.com/company/fortech/' },
+  { name: 'ServiceRocket',            src: '/servicerocket.svg', url: 'https://www.linkedin.com/company/servicerocket/' },
+  { name: 'Apple',                    src: '/apple.png',         url: 'https://www.linkedin.com/company/apple/' },
+  { name: 'University of St. Gallen', src: '/unisg.svg',         url: 'https://www.unisg.ch/en/' },
+  { name: 'Amazon',                   src: '/amazon.svg',        url: 'https://www.linkedin.com/company/amazon/' },
+  { name: 'Fortech',                  src: '/fortech.svg',       url: 'https://www.linkedin.com/company/fortech/' },
 ]
 
+// Hannah Barker replaced by Luke Whiting
 const TEAM = [
-  { name: 'Hannah Barker',  role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/hannah-barker-/' },
+  { name: 'Luke Whiting',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/luke-whiting/' },
   { name: 'Olly Perkins',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/oliver-t-perkins/' },
   { name: 'Ash Abraham',    role: 'Program Manager',   linkedin: 'https://www.linkedin.com/in/ash-abraham/' },
   { name: 'Jacob Böhm',     role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/jacobbohm1/' },
@@ -81,12 +80,12 @@ export default function AboutPage() {
       </section>
 
       {/* ── MENTORS ── */}
-      <section className="au-section au-section--light">
+      <section className="au-section au-section--dark">
         <div className="au-inner">
-          <div className="au-section-hd">
-            <p className="au-section-eyebrow">Our Mentors</p>
-            <h2 className="au-section-title">Mentors who&apos;ve built,<br />raised, and exited.</h2>
-            <p className="au-section-sub">
+          <div className="au-section-hd au-section-hd--light">
+            <p className="au-section-eyebrow au-section-eyebrow--light">Our Mentors</p>
+            <h2 className="au-section-title au-section-title--light">Mentors who&apos;ve built,<br />raised, and exited.</h2>
+            <p className="au-section-sub au-section-sub--light">
               Experienced founders, investors, and operators who show up
               consistently for the next generation of faith-driven builders.
             </p>
@@ -95,8 +94,9 @@ export default function AboutPage() {
           <div className="au-mentors-grid">
             {MENTORS.map(name => (
               <div key={name} className="au-mentor-card">
-                <div className="au-avatar au-avatar--blue"><Initials name={name} /></div>
+                <div className="au-mentor-avatar"><Initials name={name} /></div>
                 <p className="au-mentor-name">{name}</p>
+                <div className="au-mentor-accent" />
               </div>
             ))}
           </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
           <div className="au-logos-strip">
             <p className="au-logos-label">Our mentors are executives at</p>
             <div className="au-logos-row">
-              {LOGOS.map(l => (
+              {MENTOR_LOGOS.map(l => (
                 <div key={l.name} className="au-logo-slot">
                   <img src={l.src} alt={l.name} />
                 </div>
@@ -129,13 +129,7 @@ export default function AboutPage() {
 
           <div className="au-founders-grid">
             {FOUNDERS.map((f, i) => (
-              <a
-                key={f.name}
-                href={f.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="au-founder-card"
-              >
+              <a key={f.name} href={f.linkedin} target="_blank" rel="noopener noreferrer" className="au-founder-card">
                 <span className="au-card-num">0{i + 1}</span>
                 <div className="au-founder-body">
                   <p className="au-founder-name">{f.name}</p>
@@ -149,12 +143,13 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {/* Company logos */}
           <div className="au-companies">
             <p className="au-companies-label">Our cohort members have worked at</p>
-            <div className="au-companies-list">
+            <div className="au-companies-logos">
               {COMPANIES.map(c => (
-                <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="au-company-tag">
-                  {c.name}
+                <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="au-company-logo-link" title={c.name}>
+                  <img src={c.src} alt={c.name} />
                 </a>
               ))}
             </div>
@@ -163,22 +158,16 @@ export default function AboutPage() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="au-section au-section--dark">
+      <section className="au-section au-section--light">
         <div className="au-inner">
-          <div className="au-section-hd au-section-hd--light">
-            <p className="au-section-eyebrow au-section-eyebrow--light">The Team</p>
-            <h2 className="au-section-title au-section-title--light">The people who<br />make it happen.</h2>
+          <div className="au-section-hd">
+            <p className="au-section-eyebrow">The Team</p>
+            <h2 className="au-section-title">The people who<br />make it happen.</h2>
           </div>
 
           <div className="au-team-grid">
             {TEAM.map((t, i) => (
-              <a
-                key={t.name}
-                href={t.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="au-team-card"
-              >
+              <a key={t.name} href={t.linkedin} target="_blank" rel="noopener noreferrer" className="au-team-card">
                 <div className="au-team-top">
                   <span className="au-team-role-tag">{t.role}</span>
                   <span className="au-team-arrow">↗</span>

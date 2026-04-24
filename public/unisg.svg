@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60">
-  <text x="0" y="22" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="19" fill="#1a5c38" letter-spacing="0.3">Universität</text>
-  <text x="0" y="48" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="19" fill="#1a5c38" letter-spacing="0.3">St.Gallen</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#217345">
+  <!-- Upper-left blade -->
+  <polygon points="5,8 38,8 38,22 20,38 5,38"/>
+  <!-- Upper-right blade -->
+  <polygon points="62,8 95,8 95,42 78,42 62,22"/>
+  <!-- Centre oval notch (white gap) -->
+  <ellipse cx="50" cy="30" rx="9" ry="13" fill="white"/>
+  <!-- Centre bridge -->
+  <polygon points="38,18 62,18 62,42 38,42"/>
+  <!-- Gap between bridge and lower section -->
+  <rect x="38" y="42" width="24" height="10" fill="white"/>
+  <!-- Lower-left blade -->
+  <polygon points="5,55 42,55 42,95 5,95"/>
+  <!-- Lower-right blade -->
+  <polygon points="58,55 95,55 95,95 58,95"/>
+  <!-- Gap between lower blades -->
+  <polygon points="42,55 58,55 50,68" fill="white"/>
 </svg>

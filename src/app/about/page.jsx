@@ -21,12 +21,22 @@ const MENTORS = [
   'Andrew Stimson',
 ]
 
+const LOGOS = [
+  { src: '/apple.png',     name: 'Apple'     },
+  { src: '/google.png',    name: 'Google'    },
+  { src: '/meta.png',      name: 'Meta'      },
+  { src: '/microsoft.png', name: 'Microsoft' },
+  { src: '/oracle.png',    name: 'Oracle'    },
+  { src: '/sequoia.png',   name: 'Sequoia'   },
+  { src: '/tesla.png',     name: 'Tesla'     },
+]
+
 const FOUNDERS = [
-  { name: 'Antonio Vinter',      venture: 'OnStage',                                         linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
-  { name: 'Oleksandr Prosianyk', venture: 'Aimaly',                                          linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
-  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',            linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
-  { name: 'Jai Deshpande',       venture: 'CRM Dashboards for 8-figure B2B companies',       linkedin: 'https://www.linkedin.com/in/jai-deshpande-839112235/' },
-  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',    linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
+  { name: 'Antonio Vinter',      venture: 'OnStage',                                       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
+  { name: 'Oleksandr Prosianyk', venture: 'Aimaly',                                        linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
+  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',          linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
+  { name: 'Jai Deshpande',       venture: 'CRM Dashboards for 8-figure B2B companies',     linkedin: 'https://www.linkedin.com/in/jai-deshpande-839112235/' },
+  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',  linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
 ]
 
 const COMPANIES = [
@@ -81,6 +91,7 @@ export default function AboutPage() {
               consistently for the next generation of faith-driven builders.
             </p>
           </div>
+
           <div className="au-mentors-grid">
             {MENTORS.map(name => (
               <div key={name} className="au-mentor-card">
@@ -88,6 +99,18 @@ export default function AboutPage() {
                 <p className="au-mentor-name">{name}</p>
               </div>
             ))}
+          </div>
+
+          {/* Logos strip */}
+          <div className="au-logos-strip">
+            <p className="au-logos-label">Our mentors are executives at</p>
+            <div className="au-logos-row">
+              {LOGOS.map(l => (
+                <div key={l.name} className="au-logo-slot">
+                  <img src={l.src} alt={l.name} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -103,15 +126,25 @@ export default function AboutPage() {
               excellence and Kingdom impact.
             </p>
           </div>
+
           <div className="au-founders-grid">
-            {FOUNDERS.map(f => (
-              <a key={f.name} href={f.linkedin} target="_blank" rel="noopener noreferrer" className="au-founder-card">
-                <div className="au-avatar au-avatar--teal"><Initials name={f.name} /></div>
-                <div className="au-founder-info">
+            {FOUNDERS.map((f, i) => (
+              <a
+                key={f.name}
+                href={f.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="au-founder-card"
+              >
+                <span className="au-card-num">0{i + 1}</span>
+                <div className="au-founder-body">
                   <p className="au-founder-name">{f.name}</p>
                   <p className="au-founder-venture">{f.venture}</p>
                 </div>
-                <span className="au-arrow">↗</span>
+                <div className="au-card-footer">
+                  <span className="au-card-link">View LinkedIn <span className="au-card-arrow">↗</span></span>
+                </div>
+                <div className="au-card-accent" />
               </a>
             ))}
           </div>
@@ -136,15 +169,23 @@ export default function AboutPage() {
             <p className="au-section-eyebrow au-section-eyebrow--light">The Team</p>
             <h2 className="au-section-title au-section-title--light">The people who<br />make it happen.</h2>
           </div>
+
           <div className="au-team-grid">
-            {TEAM.map(t => (
-              <a key={t.name} href={t.linkedin} target="_blank" rel="noopener noreferrer" className="au-team-card">
-                <div className="au-avatar au-avatar--gold"><Initials name={t.name} /></div>
-                <div className="au-team-info">
-                  <p className="au-team-name">{t.name}</p>
-                  <p className="au-team-role">{t.role}</p>
+            {TEAM.map((t, i) => (
+              <a
+                key={t.name}
+                href={t.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="au-team-card"
+              >
+                <div className="au-team-top">
+                  <span className="au-team-role-tag">{t.role}</span>
+                  <span className="au-team-arrow">↗</span>
                 </div>
-                <span className="au-arrow au-arrow--gold">↗</span>
+                <div className="au-team-avatar"><Initials name={t.name} /></div>
+                <p className="au-team-name">{t.name}</p>
+                <div className="au-team-rule" />
               </a>
             ))}
           </div>

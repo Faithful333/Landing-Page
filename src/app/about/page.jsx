@@ -32,13 +32,9 @@ const FOUNDERS = [
 
 // Logo images instead of text tags
 const COMPANIES = [
-  { name: 'ServiceRocket',            src: '/servicerocket.svg', url: 'https://www.linkedin.com/company/servicerocket/' },
-  { name: 'University of St. Gallen', src: '/unisg.svg',         url: 'https://www.unisg.ch/en/' },
-  { name: 'Apple',                    src: '/apple.png',         url: 'https://www.linkedin.com/company/apple/' },
-  { name: 'Amazon',                   src: '/amazon.svg',        url: 'https://www.linkedin.com/company/amazon/' },
-  { name: 'Fortech',                  src: '/fortech.svg',       url: 'https://www.linkedin.com/company/fortech/' },
-  { name: 'UC Berkeley Haas',         src: '/ucberkeley.svg',    url: 'https://haas.berkeley.edu/' },
-  { name: 'Brandeis',                 src: '/brandeis.svg',      url: 'https://www.brandeis.edu/international-business-school/' },
+  { name: 'ServiceRocket', src: '/servicerocket.svg', url: 'https://www.linkedin.com/company/servicerocket/' },
+  { name: 'Apple',         src: '/apple.png',         url: 'https://www.linkedin.com/company/apple/' },
+  { name: 'Amazon',        src: '/amazon.svg',        url: 'https://www.linkedin.com/company/amazon/' },
 ]
 
 // Hannah Barker replaced by Luke Whiting

@@ -75,12 +75,16 @@ export default function Nav() {
             <span className="nav-dropdown-num">01</span>
             Join the Ecosystem
           </a>
-          <a href="/mentors" className="nav-dropdown-item" onClick={close}>
+          <a href="/about" className="nav-dropdown-item" onClick={close}>
             <span className="nav-dropdown-num">02</span>
+            About Us
+          </a>
+          <a href="/mentors" className="nav-dropdown-item" onClick={close}>
+            <span className="nav-dropdown-num">03</span>
             For Mentors
           </a>
           <a href="/basis-of-faith" className="nav-dropdown-item" onClick={close}>
-            <span className="nav-dropdown-num">03</span>
+            <span className="nav-dropdown-num">04</span>
             Basis of Faith
           </a>
         </div>

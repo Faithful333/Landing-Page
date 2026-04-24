@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64">
+  <rect width="220" height="64" rx="4" fill="#003262"/>
+  <text x="14" y="28" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#FDB515" letter-spacing="0.5">UC Berkeley</text>
+  <text x="14" y="50" font-family="Georgia, serif" font-weight="400" font-size="15" fill="#ffffff" letter-spacing="0.5">Haas</text>
+</svg>

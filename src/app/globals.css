@@ -2282,7 +2282,7 @@ footer { background: var(--dark-2); }
   filter: grayscale(0);
   transform: scale(1.05);
 }
-.au-company-logo-link img { height: 32px; width: auto; object-fit: contain; max-width: 120px; }
+.au-company-logo-link img { height: 36px; width: auto; object-fit: contain; max-width: 130px; }
 
 /* ── TEAM GRID — 2 x 2 ── */
 .au-team-grid {

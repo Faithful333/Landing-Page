@@ -43,6 +43,7 @@ const TEAM = [
   { name: 'Ash Abraham',    role: 'Program Manager',   linkedin: 'https://www.linkedin.com/in/ash-abraham/' },
   { name: 'Jacob Böhm',     role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/jacobbohm1/' },
   { name: 'Fernando Munoz', role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/fernando-munoz1/' },
+  { name: 'Gracey Ebere',   role: 'Operations',        linkedin: 'https://www.linkedin.com/in/gracey-ebere-a81383351/' },
 ]
 
 function Initials({ name }) {

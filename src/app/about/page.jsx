@@ -21,12 +21,6 @@ const MENTORS = [
   'Andrew Stimson',
 ]
 
-// Only Apple, Google, Meta kept — Microsoft, Oracle, Sequoia, Tesla removed
-const MENTOR_LOGOS = [
-  { src: '/apple.png',  name: 'Apple'  },
-  { src: '/google.png', name: 'Google' },
-  { src: '/meta.png',   name: 'Meta'   },
-]
 
 const FOUNDERS = [
   { name: 'Antonio Vinter',      venture: 'OnStage — Service Planning for your Church',       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
@@ -101,17 +95,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Logos strip */}
-          <div className="au-logos-strip">
-            <p className="au-logos-label">Our mentors are executives at</p>
-            <div className="au-logos-row">
-              {MENTOR_LOGOS.map(l => (
-                <div key={l.name} className="au-logo-slot">
-                  <img src={l.src} alt={l.name} />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

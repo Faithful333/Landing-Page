@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-const ROLES = ['Potential Mentor', 'Friend & Supporter', 'Founder']
+const ROLES = ['Potential Mentor', 'Supporter', 'Founder']
 
 const REASONS = [
   'Connect with faith-driven founders and builders',
@@ -11,7 +11,7 @@ const REASONS = [
 ]
 
 export default function JoinForm() {
-  const [interest, setInterest]   = useState('Friend & Supporter')
+  const [interest, setInterest]   = useState('Supporter')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName]   = useState('')
   const [email, setEmail]         = useState('')

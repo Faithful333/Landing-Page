@@ -1985,115 +1985,244 @@ footer { background: var(--dark-2); }
 }
 
 /* ═══════════════════════════════════════
-   ABOUT PAGE
+   ABOUT PAGE — Premium
 ═══════════════════════════════════════ */
 
-/* Hero */
+/* ── Hero ── */
 .au-hero {
-  padding: 11rem 4rem 7rem;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10rem 4rem 6rem;
   background: var(--dark);
   position: relative;
   overflow: hidden;
 }
-.au-hero::before {
-  content: '';
+
+/* Dot mesh */
+.au-hero-mesh {
   position: absolute;
-  top: -40%; right: -10%;
-  width: 700px; height: 700px;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* Ambient glows */
+.au-hero-glow {
+  position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(5,163,147,0.12) 0%, transparent 70%);
+  filter: blur(110px);
   pointer-events: none;
 }
-.au-hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
-
-.au-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 500;
-  margin-bottom: 1.5rem;
+.au-glow-1 {
+  width: 640px; height: 640px;
+  background: radial-gradient(circle, rgba(71,115,165,0.22), transparent 70%);
+  top: -20%; left: -10%;
 }
+.au-glow-2 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(5,163,147,0.16), transparent 70%);
+  bottom: -15%; right: 5%;
+}
+
+.au-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Eyebrow with flanking rules */
+.au-eyebrow {
+  font-size: 0.67rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  opacity: 0.85;
+}
+.au-eyebrow::before,
+.au-eyebrow::after {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--gold);
+  opacity: 0.35;
+}
+
 .au-headline {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(3.4rem, 7.5vw, 6.2rem);
   font-weight: 300;
   color: var(--white);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  margin-bottom: 1.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.8rem;
 }
-.au-sub {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.5);
-  font-weight: 300;
-  max-width: 540px;
+.au-headline em {
+  font-style: italic;
+  color: rgba(255,255,255,0.58);
 }
 
-/* Section shells */
-.au-section        { padding: 7rem 4rem; }
+.au-sub {
+  font-size: 1.05rem;
+  line-height: 1.82;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 0;
+}
+
+/* ── Hero stats strip ── */
+.au-hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 2rem 0;
+}
+
+.au-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 4.5rem;
+}
+
+.au-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.au-stat-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  font-weight: 500;
+}
+
+.au-stat-div {
+  width: 1px;
+  height: 44px;
+  background: rgba(255,255,255,0.09);
+  flex-shrink: 0;
+}
+
+/* ── Section shells ── */
+.au-section        { padding: 9rem 4rem; }
 .au-section--light { background: var(--light); }
 .au-section--white { background: var(--white); }
-.au-section--dark  { background: var(--dark); }
-.au-inner { max-width: 1100px; margin: 0 auto; }
-.au-section-hd { margin-bottom: 3.5rem; max-width: 600px; }
+.au-section--dark  { background: var(--dark); position: relative; overflow: hidden; }
+
+/* Subtle noise texture on dark sections */
+.au-section--dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 60%, transparent 100%);
+}
+
+.au-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; }
+
+.au-section-hd { margin-bottom: 4.5rem; max-width: 620px; }
+
+/* Centered variant — used in mentors */
+.au-section-hd--centered {
+  max-width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .au-section-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-size: 0.67rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 500;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
 }
-.au-section-eyebrow--light { color: rgba(255,255,255,0.38); }
+.au-section-eyebrow::before,
+.au-section-eyebrow::after {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+.au-section-eyebrow--light { color: rgba(255,255,255,0.3); }
 
 .au-section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   font-weight: 300;
   color: var(--dark);
-  line-height: 1.12;
-  margin-bottom: 0.9rem;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
 }
 .au-section-title--light { color: var(--white); }
 
 .au-section-sub {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  color: rgba(14,32,53,0.52);
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: rgba(14,32,53,0.5);
   font-weight: 300;
 }
-.au-section-sub--light { color: rgba(255,255,255,0.45); }
+.au-section-sub--light { color: rgba(255,255,255,0.38); }
 
-/* ── MENTOR CARDS — gold exclusive ── */
+/* ── MENTOR CARDS — gold exclusive mosaic ── */
 .au-mentors-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 4rem;
+  gap: 1px;
+  background: rgba(180,156,114,0.14);
+  border: 1px solid rgba(180,156,114,0.14);
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .au-mentor-card {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 1.1rem 1.25rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(180,156,114,0.18);
-  border-radius: 8px;
+  gap: 1rem;
+  padding: 1.5rem 1.6rem;
+  background: rgba(11,26,44,0.85);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.25s, background 0.25s, transform 0.25s;
-}
-.au-mentor-card:hover {
-  border-color: rgba(180,156,114,0.5);
-  background: rgba(180,156,114,0.06);
-  transform: translateY(-2px);
+  transition: background 0.3s ease;
+  cursor: default;
 }
 
-/* Gold shimmer top edge on hover */
+.au-mentor-card:hover {
+  background: rgba(180,156,114,0.07);
+}
+
+/* Animated gold shimmer top edge */
 .au-mentor-card::before {
   content: '';
   position: absolute;
@@ -2101,311 +2230,312 @@ footer { background: var(--dark-2); }
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.35s;
 }
 .au-mentor-card:hover::before { opacity: 1; }
 
+/* Diagonal glow sweep on hover */
+.au-mentor-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(180,156,114,0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.au-mentor-card:hover::after { opacity: 1; }
+
+/* Index number top-right */
+.au-mentor-idx {
+  position: absolute;
+  top: 0.8rem; right: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.68rem;
+  color: rgba(180,156,114,0.22);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+.au-mentor-card:hover .au-mentor-idx { color: rgba(180,156,114,0.55); }
+
 .au-mentor-avatar {
-  width: 40px; height: 40px;
+  width: 46px; height: 46px;
   border-radius: 50%;
-  background: rgba(180,156,114,0.12);
-  border: 1px solid rgba(180,156,114,0.3);
+  background: rgba(180,156,114,0.07);
+  border: 1px solid rgba(180,156,114,0.2);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative; z-index: 1;
+}
+.au-mentor-card:hover .au-mentor-avatar {
+  border-color: rgba(180,156,114,0.48);
+  background: rgba(180,156,114,0.12);
 }
 
 .au-avatar-letters {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--gold);
 }
 
 .au-mentor-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255,255,255,0.75);
   line-height: 1.3;
   letter-spacing: 0.01em;
+  flex: 1;
+  position: relative; z-index: 1;
+  transition: color 0.3s;
 }
+.au-mentor-card:hover .au-mentor-name { color: rgba(255,255,255,0.92); }
 
-/* Tiny gold dot accent bottom-right */
 .au-mentor-accent {
   position: absolute;
   bottom: 10px; right: 12px;
   width: 4px; height: 4px;
   border-radius: 50%;
   background: var(--gold);
-  opacity: 0.25;
-  transition: opacity 0.25s;
+  opacity: 0.18;
+  transition: opacity 0.3s;
+  z-index: 1;
 }
 .au-mentor-card:hover .au-mentor-accent { opacity: 0.7; }
 
-/* ── LOGOS STRIP (mentor section) ── */
-.au-logos-strip {
-  border-top: 1px solid rgba(180,156,114,0.15);
-  padding-top: 3rem;
-}
-.au-logos-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-.au-logos-row {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
-.au-logo-slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.35;
-  filter: grayscale(1) brightness(3);
-  transition: opacity 0.25s, filter 0.25s;
-}
-.au-logo-slot:hover { opacity: 0.75; filter: grayscale(0) brightness(1); }
-.au-logo-slot img { height: 28px; width: auto; object-fit: contain; }
-
-/* ── FOUNDERS GRID — 3 top + 2 centred ── */
+/* ── FOUNDERS GRID — 3 + 2 ── */
 .au-founders-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 4rem;
+  gap: 1.5rem;
 }
+
 .au-founder-card {
   grid-column: span 2;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.8rem 1.6rem;
+  padding: 2.6rem 2.4rem 2.2rem;
   background: var(--dark);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
+  border-radius: 18px;
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
-  min-height: 200px;
+  transition: transform 0.38s var(--ease-out), box-shadow 0.38s, border-color 0.38s;
+  min-height: 230px;
 }
+
+/* Ambient teal gradient inside card */
+.au-founder-card::after {
+  content: '';
+  position: absolute;
+  top: -30%; right: -20%;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(5,163,147,0.08), transparent 70%);
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
 .au-founder-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(14,32,53,0.35);
-  border-color: rgba(5,163,147,0.3);
+  transform: translateY(-7px);
+  box-shadow: 0 28px 60px rgba(5,163,147,0.14), 0 8px 24px rgba(0,0,0,0.28);
+  border-color: rgba(5,163,147,0.28);
 }
+.au-founder-card:hover::after { opacity: 1.5; }
+
 .au-founder-card:nth-child(4) { grid-column: 2 / span 2; }
 .au-founder-card:nth-child(5) { grid-column: 4 / span 2; }
 
 .au-card-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
+  font-size: 4.5rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.045);
   line-height: 1;
   position: absolute;
-  top: 1.4rem; right: 1.6rem;
-  letter-spacing: -0.02em;
+  top: 1rem; right: 1.6rem;
+  letter-spacing: -0.04em;
+  transition: color 0.35s;
+  pointer-events: none;
 }
-.au-founder-body { flex: 1; padding-top: 0.5rem; }
+.au-founder-card:hover .au-card-num { color: rgba(5,163,147,0.1); }
+
+.au-founder-body { flex: 1; padding-top: 0.5rem; position: relative; z-index: 1; }
+
 .au-founder-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
+  line-height: 1.18;
+  margin-bottom: 0.65rem;
 }
+
 .au-founder-venture {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.42);
-  line-height: 1.5;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.36);
+  line-height: 1.58;
   font-weight: 300;
 }
-.au-card-footer { margin-top: 1.8rem; }
+
+.au-card-footer { margin-top: 2.4rem; position: relative; z-index: 1; }
+
 .au-card-link {
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-size: 0.67rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: gap 0.2s;
+  opacity: 0.65;
+  transition: gap 0.25s var(--ease-out), opacity 0.25s;
 }
-.au-founder-card:hover .au-card-link { gap: 0.65rem; }
-.au-card-arrow { font-size: 0.85rem; }
+.au-founder-card:hover .au-card-link { gap: 0.75rem; opacity: 1; }
+
+.au-card-arrow { font-size: 0.9rem; }
+
+/* Animated bottom bar */
 .au-card-accent {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(to right, var(--teal), transparent);
+  background: linear-gradient(to right, var(--teal), rgba(5,163,147,0.1));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s var(--ease-out);
+  transition: transform 0.45s var(--ease-out);
 }
 .au-founder-card:hover .au-card-accent { transform: scaleX(1); }
 
-/* ── COMPANY LOGOS (cohort) ── */
-.au-companies { padding-top: 3rem; border-top: 1px solid rgba(71,115,165,0.08); }
-.au-companies-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(14,32,53,0.36);
-  font-weight: 500;
-  margin-bottom: 1.75rem;
-}
-.au-companies-logos {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-.au-company-logo-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;          /* fixed row height — keeps all logos on same baseline */
-  flex: 1;
-  min-width: 70px;
-  opacity: 0.38;
-  filter: grayscale(1);
-  transition: opacity 0.25s, filter 0.25s, transform 0.25s;
-}
-.au-company-logo-link:hover {
-  opacity: 0.9;
-  filter: grayscale(0);
-  transform: scale(1.06);
-}
-/* height-constrained so every logo fits the same 40px row */
-.au-company-logo-link img {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  max-width: 120px;
-}
-
-/* ── TEAM GRID — 2 x 2 ── */
+/* ── TEAM GRID — 3 × 2 for six people ── */
 .au-team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
+
 .au-team-card {
-  grid-column: span 1;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.8rem 1.8rem;
+  padding: 2.4rem 2.2rem 2.2rem;
   background: var(--white);
-  border: 1px solid rgba(71,115,165,0.12);
-  border-radius: 12px;
+  border: 1px solid rgba(71,115,165,0.1);
+  border-radius: 18px;
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s, background 0.3s;
-  min-height: 200px;
+  transition: transform 0.38s var(--ease-out), border-color 0.38s, box-shadow 0.38s, background 0.38s;
+  min-height: 240px;
 }
-/* Subtle blue left border accent */
+
+/* Top shimmer line on hover */
 .au-team-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--blue), rgba(71,115,165,0.2));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.35s var(--ease-out);
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--blue), transparent);
+  opacity: 0;
+  transition: opacity 0.38s;
 }
-.au-team-card:hover::before { transform: scaleY(1); }
+.au-team-card:hover::before { opacity: 1; }
+
 .au-team-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(71,115,165,0.28);
-  background: rgba(71,115,165,0.02);
-  box-shadow: 0 16px 40px rgba(71,115,165,0.12);
+  transform: translateY(-7px);
+  border-color: rgba(71,115,165,0.22);
+  background: rgba(71,115,165,0.015);
+  box-shadow: 0 24px 52px rgba(71,115,165,0.11);
 }
 
 .au-team-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.8rem;
 }
+
 .au-team-role-tag {
-  font-size: 0.65rem;
-  letter-spacing: 0.16em;
+  font-size: 0.61rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--blue);
-  font-weight: 500;
-  padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(71,115,165,0.22);
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(71,115,165,0.2);
   border-radius: 100px;
-  background: rgba(71,115,165,0.05);
+  background: rgba(71,115,165,0.06);
+  transition: background 0.25s, border-color 0.25s;
 }
+.au-team-card:hover .au-team-role-tag {
+  background: rgba(71,115,165,0.1);
+  border-color: rgba(71,115,165,0.32);
+}
+
 .au-team-arrow {
   font-size: 1rem;
-  color: rgba(14,32,53,0.18);
-  transition: color 0.2s, transform 0.2s;
+  color: rgba(14,32,53,0.14);
+  transition: color 0.25s, transform 0.25s;
 }
-.au-team-card:hover .au-team-arrow { color: var(--blue); transform: translate(2px, -2px); }
+.au-team-card:hover .au-team-arrow { color: var(--blue); transform: translate(3px, -3px); }
 
 .au-team-avatar {
-  width: 60px; height: 60px;
+  width: 70px; height: 70px;
   border-radius: 50%;
-  background: rgba(71,115,165,0.07);
-  border: 1.5px solid rgba(71,115,165,0.2);
+  background: rgba(71,115,165,0.06);
+  border: 1.5px solid rgba(71,115,165,0.16);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.25rem;
-  transition: border-color 0.25s, background 0.25s;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s, background 0.3s;
 }
 .au-team-card:hover .au-team-avatar {
-  background: rgba(71,115,165,0.12);
-  border-color: rgba(71,115,165,0.38);
+  background: rgba(71,115,165,0.1);
+  border-color: rgba(71,115,165,0.36);
 }
+
 .au-team-avatar .au-avatar-letters {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--blue);
 }
+
 .au-team-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 400;
   color: var(--dark);
   line-height: 1.2;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
+
 .au-team-rule {
-  width: 28px; height: 2px;
-  background: linear-gradient(to right, var(--blue), transparent);
+  width: 32px; height: 2px;
+  background: linear-gradient(to right, var(--blue), rgba(71,115,165,0.1));
   margin-top: auto;
   border-radius: 1px;
+  transition: width 0.35s var(--ease-out);
 }
+.au-team-card:hover .au-team-rule { width: 58px; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .au-hero          { padding: 8rem 1.5rem 5rem; }
-  .au-section       { padding: 5rem 1.5rem; }
-  .au-mentors-grid  { grid-template-columns: repeat(2, 1fr); }
-  .au-logos-row     { gap: 2rem; flex-wrap: wrap; }
-  .au-logo-slot img { height: 22px; }
-
-  .au-founders-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+  .au-hero             { padding: 8rem 1.5rem 5rem; min-height: auto; }
+  .au-hero-stat        { padding: 0 2.5rem; }
+  .au-section          { padding: 5.5rem 1.5rem; }
+  .au-mentors-grid     { grid-template-columns: repeat(2, 1fr); }
+  .au-founders-grid    { grid-template-columns: 1fr; gap: 1rem; }
   .au-founder-card,
   .au-founder-card:nth-child(4),
   .au-founder-card:nth-child(5) { grid-column: span 1; min-height: auto; }
-
-  .au-companies-logos { gap: 1.25rem; flex-wrap: wrap; }
-  .au-company-logo-link { height: 28px; min-width: 60px; }
-
-  .au-team-grid { grid-template-columns: 1fr; gap: 0.85rem; }
-  .au-team-card { grid-column: span 1; min-height: auto; }
+  .au-team-grid        { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
-@media (max-width: 480px) {
+
+@media (max-width: 540px) {
+  .au-hero-stat  { padding: 0 1.4rem; }
+  .au-stat-num   { font-size: 2.2rem; }
   .au-mentors-grid { grid-template-columns: 1fr; }
+  .au-team-grid  { grid-template-columns: 1fr; }
 }

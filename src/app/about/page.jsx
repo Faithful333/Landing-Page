@@ -21,7 +21,6 @@ const MENTORS = [
   'Andrew Stimson',
 ]
 
-
 const FOUNDERS = [
   { name: 'Antonio Vinter',      venture: 'OnStage — Service Planning for your Church',       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
   { name: 'Oleksandr Prosianyk', venture: 'Aimaly — AI Client Acquisition Systems',            linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
@@ -30,21 +29,13 @@ const FOUNDERS = [
   { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',     linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
 ]
 
-// Logo images instead of text tags
-const COMPANIES = [
-  { name: 'ServiceRocket', src: '/servicerocket.svg', url: 'https://www.linkedin.com/company/servicerocket/' },
-  { name: 'Apple',         src: '/apple.png',         url: 'https://www.linkedin.com/company/apple/' },
-  { name: 'Amazon',        src: '/amazon.svg',        url: 'https://www.linkedin.com/company/amazon/' },
-]
-
-// Hannah Barker replaced by Luke Whiting
 const TEAM = [
   { name: 'Olly Perkins',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/oliver-t-perkins/' },
   { name: 'Ash Abraham',    role: 'Program Manager',   linkedin: 'https://www.linkedin.com/in/ash-abraham/' },
   { name: 'Jacob Böhm',     role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/jacobbohm1/' },
   { name: 'Fernando Munoz', role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/fernando-munoz1/' },
-  { name: 'Gracey Ebere',   role: 'Operations',         linkedin: 'https://www.linkedin.com/in/gracey-ebere-a81383351/' },
-  { name: 'Hannah Barker',  role: 'Strategic Advisor',  linkedin: 'https://www.linkedin.com/in/hannah-barker-/' },
+  { name: 'Gracey Ebere',   role: 'Operations',        linkedin: 'https://www.linkedin.com/in/gracey-ebere-a81383351/' },
+  { name: 'Hannah Barker',  role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/hannah-barker-/' },
 ]
 
 function Initials({ name }) {
@@ -62,20 +53,39 @@ export default function AboutPage() {
 
       {/* ── HERO ── */}
       <section className="au-hero">
+        <div className="au-hero-mesh" aria-hidden="true" />
+        <div className="au-hero-glow au-glow-1" aria-hidden="true" />
+        <div className="au-hero-glow au-glow-2" aria-hidden="true" />
         <div className="au-hero-inner">
           <p className="au-eyebrow">Faithful Ventures</p>
-          <h1 className="au-headline">The people behind<br />the mission.</h1>
+          <h1 className="au-headline">The people behind<br />the <em>mission.</em></h1>
           <p className="au-sub">
             A network of mentors, founders, and operators committed to building
             ventures that shape culture and advance the Gospel.
           </p>
+          <div className="au-hero-stats">
+            <div className="au-hero-stat">
+              <span className="au-stat-num">12</span>
+              <span className="au-stat-label">Mentors</span>
+            </div>
+            <div className="au-stat-div" />
+            <div className="au-hero-stat">
+              <span className="au-stat-num">5</span>
+              <span className="au-stat-label">Founders</span>
+            </div>
+            <div className="au-stat-div" />
+            <div className="au-hero-stat">
+              <span className="au-stat-num">2026</span>
+              <span className="au-stat-label">Summer Cohort</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── MENTORS ── */}
       <section className="au-section au-section--dark">
         <div className="au-inner">
-          <div className="au-section-hd au-section-hd--light">
+          <div className="au-section-hd au-section-hd--centered au-section-hd--light">
             <p className="au-section-eyebrow au-section-eyebrow--light">Our Mentors</p>
             <h2 className="au-section-title au-section-title--light">Mentors who&apos;ve built,<br />raised, and exited.</h2>
             <p className="au-section-sub au-section-sub--light">
@@ -85,15 +95,15 @@ export default function AboutPage() {
           </div>
 
           <div className="au-mentors-grid">
-            {MENTORS.map(name => (
+            {MENTORS.map((name, i) => (
               <div key={name} className="au-mentor-card">
+                <span className="au-mentor-idx">{String(i + 1).padStart(2, '0')}</span>
                 <div className="au-mentor-avatar"><Initials name={name} /></div>
                 <p className="au-mentor-name">{name}</p>
                 <div className="au-mentor-accent" />
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -124,7 +134,6 @@ export default function AboutPage() {
               </a>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -137,7 +146,7 @@ export default function AboutPage() {
           </div>
 
           <div className="au-team-grid">
-            {TEAM.map((t, i) => (
+            {TEAM.map((t) => (
               <a key={t.name} href={t.linkedin} target="_blank" rel="noopener noreferrer" className="au-team-card">
                 <div className="au-team-top">
                   <span className="au-team-role-tag">{t.role}</span>

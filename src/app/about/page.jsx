@@ -86,7 +86,7 @@ export default function AboutPage() {
       <section className="au-section au-section--dark">
         <div className="au-inner">
           <div className="au-section-hd au-section-hd--centered au-section-hd--light">
-            <p className="au-section-eyebrow au-section-eyebrow--light">Our Mentors</p>
+            <p className="au-section-eyebrow au-section-eyebrow--light">Our Faithful Mentors</p>
             <h2 className="au-section-title au-section-title--light">Mentors who&apos;ve built,<br />raised, and exited.</h2>
             <p className="au-section-sub au-section-sub--light">
               Experienced founders, investors, and operators who show up

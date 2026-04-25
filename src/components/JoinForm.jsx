@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { getDb } from '@/lib/supabase'
 
 const REASONS = [
   'Connect with faith-driven founders and builders',
@@ -44,16 +43,17 @@ export default function JoinForm() {
     setErrors({})
     setStatus('loading')
     try {
-      const res = await getDb().from('signups').insert([{
-        first_name: firstName.trim(),
-        last_name:  lastName.trim(),
-        email:      email.trim(),
-        interest,
-      }])
-      if (res.error && res.error.code !== '23505') {
-        console.error('Supabase error:', res.error)
-        throw res.error
-      }
+      const res = await fetch('/api/signup', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          firstName: firstName.trim(),
+          lastName:  lastName.trim(),
+          email:     email.trim(),
+          interest,
+        }),
+      })
+      if (!res.ok) throw new Error('Request failed')
       setStatus('success')
     } catch (err) {
       console.error('Form submission error:', err)

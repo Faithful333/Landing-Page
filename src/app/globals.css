@@ -1079,42 +1079,20 @@ nav.scrolled {
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Role picker */
-.cta-role-picker {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.8rem;
-  flex-wrap: wrap;
-}
-
-.cta-role-btn {
-  flex: 1;
-  min-width: 0;
-  padding: 0.6rem 0.75rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  color: rgba(255,255,255,0.45);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+/* Role dropdown */
+.cta-select {
+  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-  white-space: nowrap;
-  text-align: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
 }
 
-.cta-role-btn:hover {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.7);
-}
-
-.cta-role-btn.active {
-  background: rgba(5,163,147,0.15);
-  border-color: rgba(5,163,147,0.55);
-  color: var(--teal);
+.cta-select option {
+  background: #0e2035;
+  color: white;
 }
 
 .cta-form-heading {

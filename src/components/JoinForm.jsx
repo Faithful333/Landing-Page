@@ -106,18 +106,6 @@ export default function JoinForm() {
           ) : (
             <div className="cta-form-card">
               <p className="cta-form-heading">Get connected</p>
-              <div className="cta-role-picker">
-                {ROLES.map(r => (
-                  <button
-                    key={r}
-                    type="button"
-                    className={`cta-role-btn${interest === r ? ' active' : ''}`}
-                    onClick={() => setInterest(r)}
-                  >
-                    {r}
-                  </button>
-                ))}
-              </div>
               <form onSubmit={handleSubmit} noValidate>
                 <div className="cta-input-row">
                   <div className="cta-field">
@@ -156,6 +144,19 @@ export default function JoinForm() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                   />
+                </div>
+                <div className="cta-field">
+                  <label htmlFor="role">I am joining as</label>
+                  <select
+                    id="role"
+                    className="cta-input cta-select"
+                    value={interest}
+                    onChange={e => setInterest(e.target.value)}
+                  >
+                    {ROLES.map(r => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
+                  </select>
                 </div>
                 {status === 'error' && (
                   <p className="form-error">Something went wrong. Please try again.</p>

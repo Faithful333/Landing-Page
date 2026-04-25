@@ -125,17 +125,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Company logos */}
-          <div className="au-companies">
-            <p className="au-companies-label">Our cohort members have worked at</p>
-            <div className="au-companies-logos">
-              {COMPANIES.map(c => (
-                <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" className="au-company-logo-link" title={c.name}>
-                  <img src={c.src} alt={c.name} />
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

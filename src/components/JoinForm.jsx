@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 
+const ROLES = ['Potential Mentor', 'Friend & Supporter', 'Founder']
+
 const REASONS = [
   'Connect with faith-driven founders and builders',
   'Access our curated ecosystem of top industry leaders',
@@ -9,7 +11,7 @@ const REASONS = [
 ]
 
 export default function JoinForm() {
-  const [interest, setInterest]   = useState('Email List')
+  const [interest, setInterest]   = useState('Friend & Supporter')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName]   = useState('')
   const [email, setEmail]         = useState('')
@@ -104,6 +106,18 @@ export default function JoinForm() {
           ) : (
             <div className="cta-form-card">
               <p className="cta-form-heading">Get connected</p>
+              <div className="cta-role-picker">
+                {ROLES.map(r => (
+                  <button
+                    key={r}
+                    type="button"
+                    className={`cta-role-btn${interest === r ? ' active' : ''}`}
+                    onClick={() => setInterest(r)}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
               <form onSubmit={handleSubmit} noValidate>
                 <div className="cta-input-row">
                   <div className="cta-field">

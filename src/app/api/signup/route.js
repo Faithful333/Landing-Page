@@ -11,10 +11,14 @@ export async function POST(req) {
     }
 
     const res = await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ firstName, lastName, email, interest }),
+      method:   'POST',
+      redirect: 'follow',
+      headers:  { 'Content-Type': 'text/plain' },
+      body:     JSON.stringify({ firstName, lastName, email, interest }),
     })
+
+    const text = await res.text()
+    console.log('Apps Script response:', res.status, text)
 
     if (!res.ok) throw new Error(`Apps Script returned ${res.status}`)
 

@@ -9,10 +9,22 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
+    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+    const sheetId = process.env.GOOGLE_SHEET_ID
+
+    // Log what we have (safe — no key values exposed)
+    console.log('ENV check:', {
+      hasKey:   !!privateKey,
+      hasEmail: !!clientEmail,
+      hasSheet: !!sheetId,
+      keyStart: privateKey?.slice(0, 30),
+    })
+
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key:  process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        client_email: clientEmail,
+        private_key:  privateKey,
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     })
@@ -20,7 +32,7 @@ export async function POST(req) {
     const sheets = google.sheets({ version: 'v4', auth })
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      spreadsheetId: sheetId,
       range: 'Sheet1!A:E',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
@@ -29,14 +41,14 @@ export async function POST(req) {
           firstName,
           lastName,
           email,
-          interest || 'Email List',
+          interest || 'Supporter',
         ]],
       },
     })
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('Sheets error:', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    console.error('Sheets error:', err.message)
+    return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

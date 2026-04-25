@@ -60,7 +60,7 @@ export default function AboutPage() {
           <p className="au-eyebrow">Faithful Ventures</p>
           <h1 className="au-headline">The people behind<br />the <em>mission.</em></h1>
           <p className="au-sub au-sub--quote">
-            Excellence is not a compromise with the world. It is the standard God calls us to — and the most powerful witness a Christian founder can have.
+            Faith and excellence are not in tension. It is the standard God calls us to — and the most powerful witness a Christian founder can have.
           </p>
           <p className="au-sub">
             Our mentors have built at the highest level. Our founders were chosen because they have what it takes to join them.

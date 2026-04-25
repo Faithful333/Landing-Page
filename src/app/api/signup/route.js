@@ -1,5 +1,6 @@
-import { google } from 'googleapis'
 import { NextResponse } from 'next/server'
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBGVfv78dTUVwrFTkhrknBNq3qw8AO6pCDtjra27QG-7hMltksfIx8bYa_obG2c9tUMg/exec'
 
 export async function POST(req) {
   try {
@@ -9,46 +10,17 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
-    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-    const sheetId = process.env.GOOGLE_SHEET_ID
-
-    // Log what we have (safe — no key values exposed)
-    console.log('ENV check:', {
-      hasKey:   !!privateKey,
-      hasEmail: !!clientEmail,
-      hasSheet: !!sheetId,
-      keyStart: privateKey?.slice(0, 30),
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ firstName, lastName, email, interest }),
     })
 
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: clientEmail,
-        private_key:  privateKey,
-      },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    })
-
-    const sheets = google.sheets({ version: 'v4', auth })
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: 'Sheet1!A:E',
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [[
-          new Date().toISOString(),
-          firstName,
-          lastName,
-          email,
-          interest || 'Supporter',
-        ]],
-      },
-    })
+    if (!res.ok) throw new Error(`Apps Script returned ${res.status}`)
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('Sheets error:', err.message)
+    console.error('Signup error:', err.message)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

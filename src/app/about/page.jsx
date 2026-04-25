@@ -30,12 +30,12 @@ const FOUNDERS = [
 ]
 
 const TEAM = [
+  { name: 'Hannah Barker',  role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/hannah-barker-/' },
   { name: 'Olly Perkins',   role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/oliver-t-perkins/' },
+  { name: 'Fernando Munoz', role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/fernando-munoz1/' },
   { name: 'Ash Abraham',    role: 'Program Manager',   linkedin: 'https://www.linkedin.com/in/ash-abraham/' },
   { name: 'Jacob Böhm',     role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/jacobbohm1/' },
-  { name: 'Fernando Munoz', role: 'Co-Founder',        linkedin: 'https://www.linkedin.com/in/fernando-munoz1/' },
   { name: 'Gracey Ebere',   role: 'Operations',        linkedin: 'https://www.linkedin.com/in/gracey-ebere-a81383351/' },
-  { name: 'Hannah Barker',  role: 'Strategic Advisor', linkedin: 'https://www.linkedin.com/in/hannah-barker-/' },
 ]
 
 function Initials({ name }) {

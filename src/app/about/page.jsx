@@ -59,24 +59,28 @@ export default function AboutPage() {
         <div className="au-hero-inner">
           <p className="au-eyebrow">Faithful Ventures</p>
           <h1 className="au-headline">The people behind<br />the <em>mission.</em></h1>
+          <p className="au-sub au-sub--quote">
+            Excellence is not a compromise with the world. It is the standard God calls us to — and the most powerful witness a Christian founder can have.
+          </p>
           <p className="au-sub">
-            A network of mentors, founders, and operators committed to building
-            ventures that shape culture and advance the Gospel.
+            Our mentors have built at the highest level. Our founders were chosen because they have what it takes to join them.
           </p>
           <div className="au-hero-stats">
             <div className="au-hero-stat">
               <span className="au-stat-num">12</span>
               <span className="au-stat-label">Mentors</span>
+              <span className="au-stat-desc">world-class operators, executives, and builders</span>
             </div>
             <div className="au-stat-div" />
             <div className="au-hero-stat">
               <span className="au-stat-num">5</span>
               <span className="au-stat-label">Founders</span>
+              <span className="au-stat-desc">handpicked from across Europe and the US</span>
             </div>
             <div className="au-stat-div" />
             <div className="au-hero-stat">
-              <span className="au-stat-num">2026</span>
-              <span className="au-stat-label">Summer Cohort</span>
+              <span className="au-stat-num au-stat-num--sm">Summer 2026</span>
+              <span className="au-stat-label">Cohort 1</span>
             </div>
           </div>
         </div>

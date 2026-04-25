@@ -2126,6 +2126,11 @@ footer { background: var(--dark-2); }
   letter-spacing: -0.03em;
 }
 
+.au-stat-num--sm {
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
 .au-stat-label {
   font-size: 0.6rem;
   letter-spacing: 0.24em;
@@ -2134,11 +2139,26 @@ footer { background: var(--dark-2); }
   font-weight: 500;
 }
 
+.au-stat-desc {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.22);
+  font-weight: 300;
+  text-align: center;
+  max-width: 160px;
+  line-height: 1.5;
+}
+
 .au-stat-div {
   width: 1px;
-  height: 44px;
+  height: 60px;
   background: rgba(255,255,255,0.09);
   flex-shrink: 0;
+}
+
+.au-sub--quote {
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1rem;
 }
 
 /* ── Section shells ── */

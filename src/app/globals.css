@@ -2382,8 +2382,8 @@ footer { background: var(--dark-2); }
 }
 .au-founder-card:hover::after { opacity: 1.5; }
 
-.au-founder-card:nth-child(4) { grid-column: 2 / span 2; }
-.au-founder-card:nth-child(5) { grid-column: 4 / span 2; }
+/* 7-card layout: 3 + 3 + 1 centred */
+.au-founder-card:nth-child(7) { grid-column: 3 / span 2; }
 
 .au-card-num {
   font-family: 'Cormorant Garamond', serif;
@@ -2564,8 +2564,7 @@ footer { background: var(--dark-2); }
   .au-mentors-grid     { grid-template-columns: repeat(2, 1fr); }
   .au-founders-grid    { grid-template-columns: 1fr; gap: 1rem; }
   .au-founder-card,
-  .au-founder-card:nth-child(4),
-  .au-founder-card:nth-child(5) { grid-column: span 1; min-height: auto; }
+  .au-founder-card:nth-child(7) { grid-column: span 1; min-height: auto; }
   .au-team-grid        { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
 

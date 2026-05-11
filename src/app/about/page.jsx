@@ -30,11 +30,13 @@ const MENTORS = [
 ]
 
 const FOUNDERS = [
-  { name: 'Antonio Vinter',      venture: 'OnStage — Service Planning for your Church',       linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
-  { name: 'Oleksandr Prosianyk', venture: 'Aimaly — AI Client Acquisition Systems',            linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
-  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',             linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
-  { name: 'Jai Deshpande',       venture: 'CRM Dashboards for 8-figure B2B companies',        linkedin: 'https://www.linkedin.com/in/jai-deshpande-839112235/' },
-  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',     linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
+  { name: 'Antonio Vinter',      venture: 'OnStage — Service Planning for your Church',            linkedin: 'https://www.linkedin.com/in/antonio-vinter/' },
+  { name: 'Oleksandr Prosianyk', venture: 'Aimaly — AI Client Acquisition Systems',                linkedin: 'https://www.linkedin.com/in/alexprosianyk/' },
+  { name: 'Israel Ogbonna',      venture: 'AI Agents for residential real estate',                  linkedin: 'https://www.linkedin.com/in/israel-ogbonna-u/' },
+  { name: 'Quirine Cobben',      venture: 'Prayd — a prayer app for millennials & Gen Z',           linkedin: 'https://www.linkedin.com/in/quirine-cobben-b92a82183/' },
+  { name: 'Eve Carole Noumsi',   venture: 'Non-profit organization for Women Empowerment',          linkedin: 'https://www.linkedin.com/in/eve-carole-noumsi/' },
+  { name: 'Cameron Lockrey',     venture: 'GigNGo',                                                 linkedin: 'https://www.linkedin.com/in/cameronlockrey/' },
+  { name: 'Jeff Nelly',          venture: 'Vaultsplit',                                             linkedin: 'https://www.linkedin.com/in/jeffnelly/' },
 ]
 
 const TEAM = [
@@ -81,7 +83,7 @@ export default function AboutPage() {
             </div>
             <div className="au-stat-div" />
             <div className="au-hero-stat">
-              <span className="au-stat-num">5</span>
+              <span className="au-stat-num">7</span>
               <span className="au-stat-label">Founders</span>
               <span className="au-stat-desc">handpicked from across Europe and the US</span>
             </div>
@@ -126,7 +128,7 @@ export default function AboutPage() {
             <p className="au-section-eyebrow">Summer Cohort 2026</p>
             <h2 className="au-section-title">Meet the founders.</h2>
             <p className="au-section-sub">
-              Five early-stage founders building ventures at the intersection of
+              Seven early-stage founders building ventures at the intersection of
               excellence and Kingdom impact.
             </p>
           </div>

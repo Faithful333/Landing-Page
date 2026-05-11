@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz--L1a7f-8m1jucIiZQ0mr1jgvbTWMQpOGf_L0wVIJrz2yTVehdNwhj8yDGtCed-Dt/exec'
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydM8ve_ptmrv_91ATeCk8VwAYd_wEXrptiLUmY-BgXzCyfhKTNikh4QVYteaG-aAeTmg/exec'
 
 export async function POST(req) {
   try {
@@ -10,17 +10,21 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
-    const res = await fetch(APPS_SCRIPT_URL, {
+    // Step 1: POST to Apps Script — do NOT follow redirects automatically
+    const initial = await fetch(APPS_SCRIPT_URL, {
       method:   'POST',
-      redirect: 'follow',
+      redirect: 'manual',
       headers:  { 'Content-Type': 'text/plain' },
       body:     JSON.stringify({ firstName, lastName, email, interest }),
     })
 
-    const text = await res.text()
-    console.log('Apps Script response:', res.status, text)
+    // Step 2: Follow the first redirect (googleusercontent.com) which has the real response
+    const redirectUrl = initial.headers.get('location')
+    if (!redirectUrl) throw new Error('No redirect from Apps Script')
 
-    if (!res.ok) throw new Error(`Apps Script returned ${res.status}`)
+    const result = await fetch(redirectUrl)
+    const text   = await result.text()
+    console.log('Apps Script result:', text)
 
     return NextResponse.json({ success: true })
   } catch (err) {

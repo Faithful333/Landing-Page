@@ -7,6 +7,7 @@ export const metadata = {
 }
 
 const MENTORS = [
+  'Jack Larkins',
   'Tom Hsieh',
   'Reuben George',
   'Sebastian Harris',
@@ -19,6 +20,13 @@ const MENTORS = [
   'Allan Ogwang',
   'Juan Acosta',
   'Andrew Stimson',
+  'RJ Caswell',
+  'Silas Mähner',
+  'Luke Whiting',
+  'Nick Wilger',
+  'Simon Stokes',
+  'Allen McClinton',
+  'Freddy Law',
 ]
 
 const FOUNDERS = [
@@ -67,7 +75,7 @@ export default function AboutPage() {
           </p>
           <div className="au-hero-stats">
             <div className="au-hero-stat">
-              <span className="au-stat-num">12</span>
+              <span className="au-stat-num">20</span>
               <span className="au-stat-label">Mentors</span>
               <span className="au-stat-desc">world-class operators, executives, and builders</span>
             </div>

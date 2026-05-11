@@ -8,24 +8,18 @@ export const metadata = {
 
 const MENTORS = [
   'Jack Larkins',
-  'Tom Hsieh',
   'Reuben George',
   'Sebastian Harris',
   'Leroy Hite',
   'John Ajah',
   'Hannah Barker',
-  'David Carr',
   'Ian Dibb',
   'Marie-Ange Tagne',
   'Allan Ogwang',
   'Juan Acosta',
-  'Andrew Stimson',
-  'RJ Caswell',
-  'Silas Mähner',
   'Luke Whiting',
   'Nick Wilger',
   'Simon Stokes',
-  'Allen McClinton',
   'Freddy Law',
 ]
 
@@ -112,7 +106,6 @@ export default function AboutPage() {
             {MENTORS.map((name, i) => (
               <div key={name} className="au-mentor-card">
                 <span className="au-mentor-idx">{String(i + 1).padStart(2, '0')}</span>
-                <div className="au-mentor-avatar"><Initials name={name} /></div>
                 <p className="au-mentor-name">{name}</p>
                 <div className="au-mentor-accent" />
               </div>
